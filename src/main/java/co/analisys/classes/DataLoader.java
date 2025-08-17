@@ -1,7 +1,7 @@
-package co.analisys.biblioteca;
+package co.analisys.classes;
 
-import co.analisys.biblioteca.model.*;
-import co.analisys.biblioteca.repository.PrestamoRepository;
+import co.analisys.classes.model.*;
+import co.analisys.classes.repository.PrestamoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

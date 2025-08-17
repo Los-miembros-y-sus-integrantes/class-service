@@ -1,4 +1,4 @@
-package co.analisys.biblioteca;
+package co.analisys.classes;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
