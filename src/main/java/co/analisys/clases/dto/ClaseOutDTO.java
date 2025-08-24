@@ -1,4 +1,4 @@
-package co.analisys.classes.dto;
+package co.analisys.clases.dto;
 
 import lombok.*;
 

@@ -1,4 +1,4 @@
-package co.analisys.classes.model;
+package co.analisys.clases.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
