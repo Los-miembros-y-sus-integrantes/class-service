@@ -1,7 +1,6 @@
 package co.analisys.clases.controller.interfaces;
 
 import co.analisys.clases.dto.ClaseOutDTO;
-import co.analisys.clases.dto.EntrenadorDTO;
 import co.analisys.clases.model.Clase;
 import org.springframework.web.bind.annotation.*;
 

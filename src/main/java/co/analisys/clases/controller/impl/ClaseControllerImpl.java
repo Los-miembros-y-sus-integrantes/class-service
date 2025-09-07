@@ -2,7 +2,6 @@ package co.analisys.clases.controller.impl;
 
 import co.analisys.clases.controller.interfaces.ClaseController;
 import co.analisys.clases.dto.ClaseOutDTO;
-import co.analisys.clases.dto.EntrenadorDTO;
 import co.analisys.clases.model.Clase;
 import co.analisys.clases.service.interfaces.ClaseService;
 import co.analisys.clases.service.impl.EntrenadorService;
