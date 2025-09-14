@@ -2,6 +2,8 @@ package co.analisys.clases.controller.interfaces;
 
 import co.analisys.clases.dto.ClaseOutDTO;
 import co.analisys.clases.model.Clase;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -20,6 +22,7 @@ public interface ClaseController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "201", description = "Clase creada exitosamente"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "Solicitud inválida")
     })
+    @PreAuthorize("hasRole('ROLE_ADMIN', 'ROLE_TRAINER')")
     public Clase crearClase(@RequestBody Clase clase);
     
     @GetMapping()
@@ -28,6 +31,7 @@ public interface ClaseController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "Clases listadas exitosamente"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "No se encontraron clases")
     })
+    @PreAuthorize("hasRole('ROLE_ADMIN', 'ROLE_TRAINER', 'ROLE_MEMBER')")
     public List<ClaseOutDTO> listarClases();
 
     @PostMapping("/{id}/inscripciones")
@@ -36,6 +40,7 @@ public interface ClaseController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "202", description = "Inscripción aceptada (evento publicado)"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "Clase no encontrada")
     })
+    @PreAuthorize("hasRole('ROLE_ADMIN', 'ROLE_TRAINER', 'ROLE_MEMBER')")
     void inscribir(@PathVariable("id") Long claseId, @RequestParam(required = false) String usuarioId);
 
     @PatchMapping("/{id}/horario")
@@ -44,6 +49,7 @@ public interface ClaseController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "Horario actualizado"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "Clase no encontrada")
     })
+    @PreAuthorize("hasRole('ROLE_ADMIN', 'ROLE_TRAINER')")
     Clase actualizarHorario(@PathVariable("id") Long claseId, @RequestParam("nuevo") String nuevoHorarioISO);
 
 }
