@@ -30,4 +30,20 @@ public interface ClaseController {
     })
     public List<ClaseOutDTO> listarClases();
 
+    @PostMapping("/{id}/inscripciones")
+    @Operation(summary = "Inscribir un alumno a la clase (publica evento)")
+    @ApiResponses(value = {
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "202", description = "Inscripción aceptada (evento publicado)"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "Clase no encontrada")
+    })
+    void inscribir(@PathVariable("id") Long claseId, @RequestParam(required = false) String usuarioId);
+
+    @PatchMapping("/{id}/horario")
+    @Operation(summary = "Actualizar el horario de una clase (publica evento)")
+    @ApiResponses(value = {
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "Horario actualizado"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "Clase no encontrada")
+    })
+    Clase actualizarHorario(@PathVariable("id") Long claseId, @RequestParam("nuevo") String nuevoHorarioISO);
+
 }

@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.time.LocalDateTime;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,6 +26,17 @@ public class ClaseControllerImpl implements ClaseController {
     @Override
     public List<ClaseOutDTO> listarClases() {
         return claseService.listarClases();
+    }
+
+    @Override
+    public void inscribir(Long claseId, String usuarioId) {
+        claseService.inscribirAlumno(claseId, usuarioId);
+    }
+
+    @Override
+    public Clase actualizarHorario(Long claseId, String nuevoHorarioISO) {
+        LocalDateTime nuevo = LocalDateTime.parse(nuevoHorarioISO);
+        return claseService.actualizarHorario(claseId, nuevo);
     }
 
 }
