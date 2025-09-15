@@ -46,4 +46,12 @@ public interface ClaseController {
     })
     Clase actualizarHorario(@PathVariable("id") Long claseId, @RequestParam("nuevo") String nuevoHorarioISO);
 
+    @PostMapping("/{id}/ocupacion")
+    @Operation(summary = "Actualizar la ocupación de una clase (publica evento)")
+    @ApiResponses(value = {
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "Ocupación actualizada"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "Clase no encontrada")
+    })
+    void actualizarOcupacion(@PathVariable("id") Long claseId, @RequestParam("ocupacion") int ocupacion);
+
 }

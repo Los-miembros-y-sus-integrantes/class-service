@@ -39,4 +39,11 @@ public class ClaseControllerImpl implements ClaseController {
         return claseService.actualizarHorario(claseId, nuevo);
     }
 
+    @Override
+    public void actualizarOcupacion(Long claseId, int ocupacion) {
+        claseService.actualizarOcupacion(claseId, ocupacion);
+    }
+
+    
+
 }

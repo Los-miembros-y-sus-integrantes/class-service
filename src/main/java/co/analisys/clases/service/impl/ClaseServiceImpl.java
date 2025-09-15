@@ -2,10 +2,12 @@ package co.analisys.clases.service.impl;
 
 import co.analisys.clases.dto.ClaseOutDTO;
 import co.analisys.clases.dto.EntrenadorDTO;
+import co.analisys.clases.dto.OcupacionClaseDTO;
 import co.analisys.clases.model.Clase;
 import co.analisys.clases.repository.ClaseRepository;
 import co.analisys.clases.service.interfaces.ClaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import static co.analisys.clases.messaging.RabbitConfig.*;
 import co.analisys.clases.messaging.ClaseInscripcionCreadaEvent;
@@ -26,6 +28,8 @@ public class ClaseServiceImpl implements ClaseService {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
+
+    @Autowired KafkaTemplate<String, OcupacionClaseDTO> kafkaTemplate;
 
     @Override
     public Clase crearClase(Clase clase) {
@@ -85,5 +89,11 @@ public class ClaseServiceImpl implements ClaseService {
                 .capacidadMaxima(clase.getCapacidadMaxima())
                 .entrenador(entrenador)
                 .build();
+    }
+
+    @Override
+    public void actualizarOcupacion(Long claseId, Integer nuevaOcupacion) {
+        OcupacionClaseDTO dto = new OcupacionClaseDTO(claseId, nuevaOcupacion, java.time.LocalDateTime.now());
+        kafkaTemplate.send("ocupacion-clases", claseId.toString(), dto);
     }
 }
