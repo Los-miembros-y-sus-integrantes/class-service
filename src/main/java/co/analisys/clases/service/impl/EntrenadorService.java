@@ -36,7 +36,7 @@ public class EntrenadorService {
         try {
             return entrenadorClient.obtenerTodos();
         } catch (Exception e) {
-            System.err.println("Error al obtener lista de entrenadores: " + e.getMessage());
+            //System.err.println("Error al obtener lista de entrenadores: " + e.getMessage());
             return null;
         }
     }
