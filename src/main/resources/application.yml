@@ -11,6 +11,37 @@ spring:
   h2:
     console:
       enabled: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  kafka:
+    bootstrap-servers: localhost:29092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/gimnasio
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+
+server:
+  port: 8084
+
+keycloak:
+  credentials:
+    secret: tpseXuNi1P0jAQWUYXlHjkE9T4dmelbN
+  auth-server-url: http://localhost:8080/auth
+  realm: gimnasio
+  resource: class-service
+  public-client: false
+
+logging:
+  level:
+    org.springframework.security: DEBUG
 
 eureka:
   client:
