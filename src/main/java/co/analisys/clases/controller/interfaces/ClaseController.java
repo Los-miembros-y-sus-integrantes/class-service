@@ -49,7 +49,7 @@ public interface ClaseController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "Horario actualizado"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "Clase no encontrada")
     })
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_TRAINER')")
+    @PreAuthorize("hasAnyRole ('ROLE_ADMIN', 'ROLE_TRAINER')")
     Clase actualizarHorario(@PathVariable("id") Long claseId, @RequestParam("nuevo") String nuevoHorarioISO);
 
     @PostMapping("/{id}/ocupacion")
